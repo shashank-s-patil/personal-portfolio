@@ -20,8 +20,8 @@ export const projects: Project[] = [
     image: "/shopingo-img.png",
     tags: ["React 19", "Tailwind", "Node JS", "MongoDB"],
     featured: true,
-    githubUrl: "https://github.com/shashank-s-patil",
-    liveUrl: "https://shopingo.vercel.app",
+    githubUrl: "https://github.com/shashank-s-patil/shopingo",
+    liveUrl: "https://shopingo-ecom.vercel.app",
   },
 
   {
