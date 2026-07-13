@@ -34,7 +34,7 @@ export const projects: Project[] = [
     tags: ["Mobile-First", "Perf Optimized", "SEO"],
     featured: false,
     githubUrl: "https://github.com/shashank-s-patil/personal-portfolio",
-    liveUrl: "https://shashank-personal-portfolio.vercel.app",
+    liveUrl: "https://shashank-personal-portfolio.vercel.app/",
   },
 
     {
