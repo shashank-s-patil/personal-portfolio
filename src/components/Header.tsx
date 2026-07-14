@@ -113,6 +113,10 @@ export default function Header() {
               >
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </button>
+              <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-500/20">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-semibold text-green-600 dark:text-green-400">Available</span>
+              </div>
               <button
                 onClick={() => setHireModalOpen(true)}
                 className="hidden sm:inline-flex px-5 py-2.5 text-sm font-semibold rounded-xl text-white bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:from-violet-700 active:to-purple-700 active:scale-[0.97] transition-all duration-200 shadow-lg shadow-violet-500/25"
@@ -171,12 +175,16 @@ export default function Header() {
                   <ChevronRight className="w-4 h-4" />
                 </button>
               ))}
+              <div className="flex items-center justify-center gap-1 px-2.5 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 border border-green-500/20 mt-4 mx-auto w-fit">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[11px] font-semibold text-green-600 dark:text-green-400">Available</span>
+              </div>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
                   setHireModalOpen(true);
                 }}
-                className="w-full mt-4 px-5 py-3.5 text-sm font-semibold rounded-xl text-white bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:from-violet-700 active:to-purple-700 transition-all duration-200 shadow-lg"
+                className="w-full px-5 py-3.5 text-sm font-semibold rounded-xl text-white bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:from-violet-700 active:to-purple-700 transition-all duration-200 shadow-lg"
               >
                 Hire Me
               </button>

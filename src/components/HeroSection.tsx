@@ -201,20 +201,20 @@ export default function HeroSection() {
             </div>
           </ScrollAnimation>
 
-          <ScrollAnimation delay={200} className="order-1 lg:order-2 flex justify-center lg:justify-end self-center">
+          <ScrollAnimation delay={200} className="order-1 lg:order-2 flex justify-center lg:justify-end self-center py-6 sm:py-0">
             <motion.div
               className="relative flex items-center justify-center"
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <motion.div
-                className="absolute w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] rounded-full border-2 border-violet-500/15"
+                className="absolute w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] rounded-full border-2 border-violet-500/15"
                 style={{ borderImage: "linear-gradient(135deg, rgba(139,92,246,0.3), rgba(168,85,247,0.1)) 1" }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               />
               <motion.div
-                className="absolute w-[280px] h-[280px] sm:w-[330px] sm:h-[330px] rounded-full border border-violet-400/10"
+                className="absolute w-[260px] h-[260px] sm:w-[330px] sm:h-[330px] rounded-full border border-violet-400/10"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
               />
@@ -227,15 +227,11 @@ export default function HeroSection() {
                   alt="Shashank Patil — Software Developer & Full Stack Developer"
                   width={320}
                   height={320}
-                  className="rounded-full ring-4 ring-slate-200/50 dark:ring-slate-700/50 shadow-2xl object-cover w-[200px] sm:w-[260px] lg:w-[320px] h-[200px] sm:h-[260px] lg:h-[320px]"
+                  className="rounded-full ring-4 ring-slate-200/50 dark:ring-slate-700/50 shadow-2xl object-cover w-[220px] sm:w-[260px] lg:w-[320px] h-[220px] sm:h-[260px] lg:h-[320px]"
                   priority
                 />
-                <div className="absolute top-4 left-4 bg-green-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-                  Available for work
-                </div>
-                <div className="absolute bottom-4 right-4 bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500" />
+                <div className="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 bg-white/90 dark:bg-slate-800/90 text-slate-900 dark:text-white text-[10px] sm:text-xs font-semibold px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg backdrop-blur-sm flex items-center gap-1 sm:gap-1.5">
+                  <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-violet-500" />
                   2+ Year Exp.
                 </div>
               </div>
