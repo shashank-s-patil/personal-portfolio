@@ -6,6 +6,7 @@ import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
   return (
@@ -13,10 +14,15 @@ export default function Home() {
       <Header />
       <main id="main-content">
         <HeroSection />
+        <SectionDivider />
         <AboutSection />
+        <SectionDivider />
         <SkillsSection />
+        <SectionDivider />
         <ServicesSection />
+        <SectionDivider />
         <ProjectsSection />
+        <SectionDivider />
         <ContactSection />
       </main>
       <Footer />

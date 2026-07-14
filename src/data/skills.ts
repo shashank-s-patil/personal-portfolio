@@ -7,6 +7,10 @@ import {
   SiCss,
   SiGit,
   SiBootstrap,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiOpenai,
 } from "react-icons/si";
 import { TbApi, TbCode } from "react-icons/tb";
 import type { IconType } from "react-icons";
@@ -44,6 +48,24 @@ export const skills: Skill[] = [
     level: "Intermediate",
   },
   {
+    name: "Node.js",
+    icon: SiNodedotjs,
+    color: "#339933",
+    level: "Advanced",
+  },
+  {
+    name: "Express",
+    icon: SiExpress,
+    color: "#000000",
+    level: "Advanced",
+  },
+  {
+    name: "MongoDB",
+    icon: SiMongodb,
+    color: "#47A248",
+    level: "Advanced",
+  },
+  {
     name: "Tailwind CSS",
     icon: SiTailwindcss,
     color: "#06B6D4",
@@ -68,6 +90,12 @@ export const skills: Skill[] = [
     level: "Intermediate",
   },
   {
+    name: "AI Tools",
+    icon: SiOpenai,
+    color: "#412991",
+    level: "Learning",
+  },
+  {
     name: "VS Code",
     icon: TbCode,
     color: "#007ACC",
@@ -77,6 +105,6 @@ export const skills: Skill[] = [
     name: "Bootstrap",
     icon: SiBootstrap,
     color: "#7952B3",
-    level: "Intermediate",
+    level: "Advanced",
   },
 ];

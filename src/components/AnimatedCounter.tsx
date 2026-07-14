@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
+import { motion, useSpring, useTransform } from "framer-motion";
 
 interface AnimatedCounterProps {
   end: number;
@@ -15,53 +16,48 @@ export default function AnimatedCounter({
   label,
   delay = 0,
 }: AnimatedCounterProps) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setTimeout(() => setIsVisible(true), delay);
+          setTimeout(() => setStarted(true), delay);
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { rootMargin: "-60px" }
     );
 
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, [delay]);
 
-  useEffect(() => {
-    if (!isVisible) return;
+  const count = useSpring(0, {
+    stiffness: 60,
+    damping: 20,
+  });
 
-    const duration = 2000;
-    const steps = 60;
-    const increment = end / steps;
-    let current = 0;
-    const stepTime = duration / steps;
+  const rounded = useTransform(count, (v) => Math.round(v));
 
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= end) {
-        setCount(end);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, stepTime);
-
-    return () => clearInterval(timer);
-  }, [isVisible, end]);
+  if (started) {
+    count.set(end);
+  }
 
   return (
     <div ref={ref} className="text-center">
-      <div className="text-3xl md:text-4xl font-bold text-violet-500">
-        {count}
-        {suffix}
-      </div>
+      <motion.div className="text-3xl sm:text-4xl font-bold bg-linear-to-r from-violet-500 to-purple-600 bg-clip-text text-transparent">
+        {started ? (
+          <motion.span>{rounded}</motion.span>
+        ) : (
+          <span>0</span>
+        )}
+        <span>{suffix}</span>
+      </motion.div>
       <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
         {label}
       </div>

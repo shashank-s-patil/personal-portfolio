@@ -16,6 +16,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hireModalOpen, setHireModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const darkMode = useSyncExternalStore(
     (onStoreChange) => {
       const observer = new MutationObserver(() => onStoreChange());
@@ -42,9 +43,15 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const sections = navLinks.map((l) => l.href.replace("#", ""));
-      for (const id of sections.reverse()) {
+      for (const id of [...sections].reverse()) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
@@ -72,9 +79,9 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100/50 dark:border-slate-800/30">
+      <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-100/50 dark:border-slate-800/30 ${scrolled ? "shadow-sm" : ""}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+          <div className={`flex items-center justify-between ${scrolled ? "h-14" : "h-16"} transition-all duration-300`}>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-xl sm:text-2xl font-bold tracking-tight hover:text-violet-500 dark:hover:text-violet-400 transition-colors duration-200"

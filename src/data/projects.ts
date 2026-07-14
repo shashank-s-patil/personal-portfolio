@@ -30,7 +30,7 @@ export const projects: Project[] = [
     slug: "personal-portfolio",
     description:
       "My first portfolio website — a mobile-first, performance-optimized showcase of projects and skills.",
-    image: "/portfolio-img.png",
+    image: "/portfolio-img.png?v=2",
     tags: ["Mobile-First", "Perf Optimized", "SEO"],
     featured: false,
     githubUrl: "https://github.com/shashank-s-patil/personal-portfolio",

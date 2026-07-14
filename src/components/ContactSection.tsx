@@ -8,9 +8,111 @@ import {
   MessageSquare,
   User,
   FileText,
+  Clock,
+  Sparkles,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 import ScrollAnimation from "./ScrollAnimation";
+
+function Confetti() {
+  const colors = ["#8b5cf6", "#a855f7", "#6366f1", "#d946ef", "#ec4899"];
+  const particles = Array.from({ length: 30 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    color: colors[i % colors.length],
+    delay: Math.random() * 0.3,
+    size: Math.random() * 6 + 4,
+    rotate: Math.random() * 360,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+      {particles.map((p) => (
+        <motion.div
+          key={p.id}
+          className="absolute rounded-sm"
+          style={{
+            left: `${p.x}%`,
+            top: -10,
+            width: p.size,
+            height: p.size * 0.6,
+            backgroundColor: p.color,
+            rotate: p.rotate,
+          }}
+          initial={{ y: -20, opacity: 1 }}
+          animate={{ y: 400, opacity: 0, rotate: p.rotate + 360 }}
+          transition={{
+            duration: 1.5,
+            delay: p.delay,
+            ease: "easeIn",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function SuccessOverlay({ onReset }: { onReset: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="absolute inset-0 bg-white dark:bg-slate-900 rounded-3xl z-10 flex items-center justify-center"
+    >
+      <Confetti />
+      <div className="relative z-10 text-center p-8 max-w-sm">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          className="w-20 h-20 mx-auto mb-6 rounded-full bg-linear-to-br from-violet-500 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/25"
+        >
+          <Sparkles className="w-9 h-9 text-white" />
+        </motion.div>
+
+        <motion.h3
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="text-2xl font-bold text-slate-900 dark:text-white mb-2"
+        >
+          Message Sent! 🎉
+        </motion.h3>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-4"
+        >
+          Thank you for reaching out! I&apos;ll review your message and get back
+          to you within <strong>24–48 hours</strong>.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+          className="flex items-center justify-center gap-2 text-sm text-violet-500 mb-6"
+        >
+          <Clock className="w-4 h-4" />
+          <span>Reply coming soon</span>
+        </motion.div>
+
+        <motion.button
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.75 }}
+          onClick={onReset}
+          className="px-6 py-2.5 rounded-xl border-2 border-slate-300 dark:border-slate-700 text-sm font-medium text-slate-600 dark:text-slate-300 hover:border-violet-500 hover:text-violet-500 transition-all duration-200"
+        >
+          Send another message
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -51,7 +153,6 @@ export default function ContactSection() {
 
       setSubmitted(true);
       setFormData({ name: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSubmitted(false), 5000);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Something went wrong. Please try again."
@@ -59,6 +160,10 @@ export default function ContactSection() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
   };
 
   return (
@@ -77,7 +182,7 @@ export default function ContactSection() {
               Get in Touch
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-violet-500 via-violet-500 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug bg-linear-to-r from-violet-500 via-violet-500 to-purple-600 bg-clip-text text-transparent">
             Let&apos;s Create Something Amazing
           </h2>
           <div className="w-24 h-1 bg-linear-to-r from-violet-500 to-purple-500 mx-auto mt-6 rounded-full" />
@@ -90,19 +195,19 @@ export default function ContactSection() {
               <div className="relative bg-white dark:bg-slate-900 rounded-2xl p-8 shadow-xl">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-16 h-16 rounded-full bg-linear-to-br from-violet-500 to-purple-500 flex items-center justify-center text-white text-xl font-bold">
-                    BA
+                    SP
                   </div>
                   <div>
                     <div className="text-lg font-bold">Shashank Patil</div>
                     <div className="text-sm text-violet-500 font-medium">
-                      Frontend Developer
+                      Software Developer
                     </div>
                   </div>
                 </div>
                 <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-                  I&apos;m always open to discussing new projects, creative
-                  ideas, or opportunities to be part of your vision. Feel free
-                  to reach out!
+                  Have a project in mind? Let&apos;s build something that moves
+                  your business forward. Open to freelance work, collaborations,
+                  and full-time opportunities.
                 </p>
               </div>
             </div>
@@ -159,117 +264,123 @@ export default function ContactSection() {
           </ScrollAnimation>
 
           <ScrollAnimation delay={150}>
-            <div className="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 md:p-10">
-              <h3 className="text-xl font-bold mb-2">Send a Message</h3>
-              <p className="text-sm text-slate-500 mb-8">
-                Have a question or want to work together? Drop me a message!
-              </p>
+            <div className="relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200 dark:border-slate-800 p-8 md:p-10 overflow-hidden">
+              <AnimatePresence mode="wait">
+                {submitted ? (
+                  <SuccessOverlay key="success" onReset={resetForm} />
+                ) : null}
+              </AnimatePresence>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder=" "
-                    required
-                    className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200"
-                  />
-                  <label
-                    htmlFor="name"
-                    className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
-                  >
-                    Your Name
-                  </label>
-                  <User className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
-                </div>
+              <div className={submitted ? "invisible" : ""}>
+                <h3 className="text-xl font-bold mb-2">Send a Message</h3>
+                <p className="text-sm text-slate-500 mb-8">
+                  Have a question or want to work together? Drop me a message!
+                </p>
 
-                <div className="relative">
-                  <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder=" "
-                    required
-                    className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200"
-                  />
-                  <label
-                    htmlFor="email"
-                    className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
-                  >
-                    Your Email
-                  </label>
-                  <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
-                </div>
-
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder=" "
-                    required
-                    className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200"
-                  />
-                  <label
-                    htmlFor="subject"
-                    className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
-                  >
-                    Subject
-                  </label>
-                  <FileText className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
-                </div>
-
-                <div className="relative">
-                  <textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder=" "
-                    required
-                    rows={4}
-                    className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
-                  />
-                  <label
-                    htmlFor="message"
-                    className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
-                  >
-                    Your Message
-                  </label>
-                  <MessageSquare className="absolute right-4 top-4 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
-                </div>
-
-                {error && (
-                  <div className="text-sm text-red-500 bg-red-50 dark:bg-red-500/10 rounded-xl px-4 py-3">
-                    {error}
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder=" "
+                      required
+                      className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200"
+                    />
+                    <label
+                      htmlFor="name"
+                      className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
+                    >
+                      Your Name
+                    </label>
+                    <User className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
                   </div>
-                )}
-                <button
-                  type="submit"
-                  disabled={loading || submitted}
-                  className="w-full py-4 rounded-xl bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:from-violet-700 active:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2"
-                >
-                  {loading ? (
-                    <>
-                      <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                      </svg>
-                      Sending...
-                    </>
-                  ) : submitted ? (
-                    "Message Sent!"
-                  ) : (
-                    <>
-                      Send Message
-                      <Send className="w-4 h-4" />
-                    </>
+
+                  <div className="relative">
+                    <input
+                      type="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder=" "
+                      required
+                      className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200"
+                    />
+                    <label
+                      htmlFor="email"
+                      className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
+                    >
+                      Your Email
+                    </label>
+                    <Mail className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type="text"
+                      id="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder=" "
+                      required
+                      className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200"
+                    />
+                    <label
+                      htmlFor="subject"
+                      className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
+                    >
+                      Subject
+                    </label>
+                    <FileText className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
+                  </div>
+
+                  <div className="relative">
+                    <textarea
+                      id="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder=" "
+                      required
+                      rows={4}
+                      className="peer w-full px-4 pt-6 pb-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-transparent text-slate-900 dark:text-white focus:ring-2 focus:ring-violet-500 focus:border-transparent outline-none transition-all duration-200 resize-none"
+                    />
+                    <label
+                      htmlFor="message"
+                      className="absolute left-4 top-4 text-slate-400 text-sm peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs peer-focus:top-1.5 peer-focus:text-xs transition-all duration-200"
+                    >
+                      Your Message
+                    </label>
+                    <MessageSquare className="absolute right-4 top-4 w-4 h-4 text-slate-400 peer-focus:text-violet-500 transition-colors duration-200" />
+                  </div>
+
+                  {error && (
+                    <div className="text-sm text-red-500 bg-red-50 dark:bg-red-500/10 rounded-xl px-4 py-3">
+                      {error}
+                    </div>
                   )}
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    disabled={loading || submitted}
+                    className="w-full py-4 rounded-xl bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 active:from-violet-700 active:to-purple-700 text-white font-semibold shadow-lg hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-2"
+                  >
+                    {loading ? (
+                      <>
+                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              </div>
             </div>
           </ScrollAnimation>
         </div>

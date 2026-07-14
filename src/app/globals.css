@@ -11,23 +11,28 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -40px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.9); }
+  75% { transform: translate(40px, 30px) scale(1.05); }
 }
 
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.animate-blob {
+  animation: blob 8s ease-in-out infinite;
 }
 
-.animate-fade-up {
-  animation: 0.5s ease-out forwards fadeUp;
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+@keyframes page-load {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-page-load {
+  animation: page-load 0.5s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -35,15 +40,6 @@ body {
   100% { opacity: 1; }
 }
 
-@keyframes slideDown {
-  0% { opacity: 0; transform: translateY(-16px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
 .animate-fade-in {
   animation: 0.3s ease-out forwards fadeIn;
-}
-
-.animate-slide-down {
-  animation: 0.3s ease-out forwards slideDown;
 }

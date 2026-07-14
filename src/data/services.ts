@@ -41,13 +41,13 @@ export const services: Service[] = [
     id: 3,
     number: "03",
     icon: Code,
-    title: "React & Next.js Development",
+    title: "Full-Stack Web Development (MERN)",
     description:
-      "Modern SPAs and server-side rendered apps using React ecosystem best practices and the App Router.",
+      "End-to-end application development using MongoDB, Express, React, and Node.js — from database design to deploy-ready APIs.",
     features: [
-      "Server & client components",
-      "API route integration",
-      "State management",
+      "RESTful APIs & backend architecture",
+      "Database design (MongoDB)",
+      "Full-stack deployment & scaling",
     ],
   },
   {

@@ -42,8 +42,8 @@ export default function Footer() {
                 Shashank<span className="text-violet-500">.</span>
               </button>
               <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                Frontend Developer building fast, accessible, and visually
-                polished web experiences.
+                Software Developer building full-stack web solutions that
+                drive business growth.
               </p>
               <div className="flex items-center gap-3">
                 <a
@@ -114,10 +114,10 @@ export default function Footer() {
                           onClick={() =>
                             scrollToSection(`#${link.toLowerCase()}`)
                           }
-                          className="group inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-violet-500 dark:hover:text-violet-400 transition-colors duration-200"
+                          className="group relative text-sm text-slate-500 dark:text-slate-400 hover:text-violet-500 dark:hover:text-violet-400 transition-colors duration-200"
                         >
-                          <span className="w-0 group-hover:w-2 h-px bg-violet-500 transition-all duration-200" />
                           {link}
+                          <span className="absolute -bottom-0.5 left-1/2 w-0 h-px bg-violet-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
                         </button>
                       </li>
                     )

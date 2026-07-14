@@ -1,11 +1,11 @@
 <div align="center">
   <h1>Shashank Patil</h1>
-  <h3>Frontend Developer · React & Next.js</h3>
+  <h3>Software Developer · Full-Stack (MERN)</h3>
   <p>
     <a href="https://github.com/shashank-s-patil" target="_blank">GitHub</a> ·
     <a href="https://linkedin.com/in/shashank-s-patil" target="_blank">LinkedIn</a> ·
     <a href="mailto:shashankpatil297@gmail.com" target="_blank">Email</a> ·
-    <a href="https://https://shashank-personal-portfolio.vercel.app/" target="_blank">Live Demo</a>
+    <a href="https://shashank-portfolio.vercel.app" target="_blank">Live Demo</a>
   </p>
   <br>
   <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js">
@@ -17,41 +17,37 @@
 
 <br>
 
-I build **fast, accessible, pixel-perfect web experiences** with modern React.  
-2+ years of turning designs into performant, production-ready applications.
+I build **full-stack web applications** that help businesses grow, automate workflows, and increase revenue. From pixel-perfect frontends to scalable backends — I deliver end-to-end digital solutions.
 
 ---
 
-## ✨ What This Portfolio Shows
+## ✨ Highlights
 
 | | |
 |---|---|
-| 🌓 **Dark Mode** | Zero-flash, persisted theme with system preference detection |
-| 🎞️ **Scroll Animations** | Custom `IntersectionObserver` fade-up component |
+| 🌓 **Dark Mode** | Zero-flash persisted theme with system preference detection |
+| 🎞️ **Scroll Animations** | Framer-motion powered + IntersectionObserver fade-up components |
+| 🃏 **3D Card Tilt** | Interactive perspective tilt on skill, service & project cards |
 | 📬 **Live Contact Form** | Messages stored in MongoDB + email notifications via Nodemailer |
-| 📊 **Reading Progress Bar** | Real-time scroll tracker at the viewport top |
+| 📊 **Reading Progress Bar** | Real-time scroll tracker at viewport top |
 | 🔢 **Animated Counters** | Scroll-triggered number counting stats |
-| 📱 **Fully Responsive** | Mobile-first with hamburger menu, glassmorphism modals |
-| ♿ **Accessible** | Skip-to-content, semantic HTML, `aria-label`s |
+| 📱 **Fully Responsive** | Mobile-first with hamburger menu & glassmorphism modals |
+| ♿ **Accessible** | Skip-to-content, semantic HTML, aria-labels throughout |
 | ⚡ **Performance** | Next.js App Router, `next/image`, code splitting |
-| 🔍 **SEO Ready** | Open Graph, Twitter Cards, metadata, JSON-LD |
+| 🔍 **SEO Optimized** | JSON-LD structured data, sitemap, robots.txt, rich metadata |
 | 🧱 **Clean Architecture** | TypeScript strict, modular components, separate data layer |
 
 ---
 
-## 💼 Services
+## 🛠️ Tech Stack
 
-- **Responsive Web Development** — Pixel-perfect, cross-browser, mobile-first
-- **UI/UX Implementation** — Figma designs → accessible interfaces
-- **React & Next.js Development** — SPAs, SSR, API routes, App Router
-- **Performance Optimization** — Lighthouse audits, bundle analysis, Core Web Vitals
-- **Maintenance & Support** — Bug fixes, updates, code reviews
+**Framework:** Next.js 16 (App Router) · **UI:** React 19 · **Language:** TypeScript · **Styling:** Tailwind CSS v4 · **Icons:** Lucide + React Icons · **Database:** MongoDB (Mongoose) · **Email:** Nodemailer · **Animations:** Framer Motion · **Analytics:** Vercel Analytics
 
 ---
 
 ## 📬 Let's Connect
 
-I'm open to **full-time roles** and **freelance projects**.
+Open to **full-time roles** and **freelance projects**.
 
 - **GitHub:** [github.com/shashank-s-patil](https://github.com/shashank-s-patil)
 - **LinkedIn:** [linkedin.com/in/shashank-s-patil](https://linkedin.com/in/shashank-s-patil)

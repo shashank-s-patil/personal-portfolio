@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { skills } from "@/data/skills";
 import ScrollAnimation from "./ScrollAnimation";
 
@@ -9,7 +11,25 @@ const levelColors = {
   Learning: "bg-blue-500/10 text-blue-600 dark:text-blue-400",
 };
 
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.06 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
+
 export default function SkillsSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
     <section
       id="skills"
@@ -23,18 +43,23 @@ export default function SkillsSection() {
               What I work with
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-snug bg-linear-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400 bg-clip-text text-transparent">
             Skills &amp; Technologies
           </h2>
           <p className="mt-4 text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            Technologies I use to build fast, accessible, and visually polished
-            web experiences.
+            Technologies I use to build full-stack solutions that scale.
           </p>
         </ScrollAnimation>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {skills.map((skill, index) => (
-            <ScrollAnimation key={skill.name} delay={index * 80}>
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3"
+        >
+          {skills.map((skill) => (
+            <motion.div key={skill.name} variants={cardVariants}>
               <div className="group p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 hover:border-violet-500/50 hover:shadow-md hover:shadow-violet-500/5 transition-all duration-200">
                 <div className="flex flex-col items-center text-center gap-3">
                   <skill.icon
@@ -55,9 +80,9 @@ export default function SkillsSection() {
                   </div>
                 </div>
               </div>
-            </ScrollAnimation>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
