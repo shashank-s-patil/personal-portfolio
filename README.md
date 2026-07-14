@@ -4,8 +4,8 @@
   <p>
     <a href="https://github.com/shashank-s-patil" target="_blank">GitHub</a> ·
     <a href="https://linkedin.com/in/shashank-s-patil" target="_blank">LinkedIn</a> ·
-    <a href="mailto:your-email@gmail.com" target="_blank">Email</a> ·
-    <a href="https://shashank-portfolio.vercel.app" target="_blank">Live Demo</a>
+    <a href="mailto:shashankpatil297@gmail.com" target="_blank">Email</a> ·
+    <a href="https://https://shashank-personal-portfolio.vercel.app/" target="_blank">Live Demo</a>
   </p>
   <br>
   <img src="https://img.shields.io/badge/Next.js-16-black?logo=next.js" alt="Next.js">
